@@ -18,4 +18,15 @@ public class ShoppingCart {
     public HashMap<Item, Integer> getItems() {
         return Items;
     }
+
+    public void addItem(Item item) {
+        if (Items.containsKey(item)) {
+            int count = Items.get(item);
+            count++;
+            Items.put(item, count);
+        } else {
+            Items.put(item, 1);
+        }
+        subtotal = subtotal + item.getItemPrice();
+    }
 }
