@@ -3,6 +3,9 @@ import main.ShoppingCart;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+
 public class ShoppingCartTests {
     @Test
     public void ShoppingCartInitializeTest() {
@@ -42,5 +45,22 @@ public class ShoppingCartTests {
         Assert.assertEquals(rightTotal, cart.getSubtotal(), 0.01);
         tofuCount = cart.getItems().get(tofu);
         Assert.assertEquals(2, tofuCount);
+    }
+
+    @Test
+    public void viewItemsTest() {
+        ShoppingCart cart = new ShoppingCart();
+        Item tofu = new Item("Tofu", 5.99);
+        Item sushi = new Item("Sushi", 10.99);
+        Item rice = new Item("Rice", 2.99);
+
+        cart.addItem(tofu);
+        cart.addItem(tofu);
+        cart.addItem(tofu);
+        cart.addItem(sushi);
+        cart.addItem(sushi);
+        cart.addItem(rice);
+
+        cart.viewItems();
     }
 }
