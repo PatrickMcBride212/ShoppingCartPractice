@@ -17,4 +17,30 @@ public class ShoppingCartTests {
         cart.addItem(tofu);
         Assert.assertEquals(tofu.getItemPrice(), cart.getSubtotal(), 0.01);
     }
+
+    @Test
+    public void ManyItemsAndCountTest() {
+        ShoppingCart cart = new ShoppingCart();
+        Item tofu = new Item("Tofu", 5.99);
+        Item sushi = new Item("Sushi", 10.99);
+        double rightTotal = 0;
+
+        cart.addItem(tofu);
+        rightTotal += tofu.getItemPrice();
+        Assert.assertEquals(rightTotal, cart.getSubtotal(), 0.01);
+        int tofuCount = cart.getItems().get(tofu);
+        Assert.assertEquals(1, tofuCount);
+
+        cart.addItem(sushi);
+        rightTotal += sushi.getItemPrice();
+        Assert.assertEquals(rightTotal, cart.getSubtotal(), 0.01);
+        int sushiCount = cart.getItems().get(sushi);
+        Assert.assertEquals(1, sushiCount);
+
+        cart.addItem(tofu);
+        rightTotal += tofu.getItemPrice();
+        Assert.assertEquals(rightTotal, cart.getSubtotal(), 0.01);
+        tofuCount = cart.getItems().get(tofu);
+        Assert.assertEquals(2, tofuCount);
+    }
 }
